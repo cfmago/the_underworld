@@ -189,19 +189,20 @@ def play_room(room):
     game_state["current_room"] = room
     current_room = game_state["current_room"]
     
-    if(game_state["current_room"] == game_state["target_room"]):
-        print("Congrats! You escaped the room!")
+#    if(game_state["current_room"] == game_state["target_room"]):
+#        print("Congrats! You escaped the room!")
     
-    elif(game_state["current_room"] == underworld):
+    if(game_state["current_room"] == underworld):
         print("In this room you find the devil. He asks you 'Do you want to make a pact?'")
     
     #    if(next_room and input("Enter 'yes' or 'no'").strip() == 'yes'):
         if input("Enter 'yes' or 'no'").strip() == 'yes':
-            print("You find a unicorn. Hop on it and fly away. See you in another!")
+            print("You find a unicorn. Hop on it and fly away. See you in another life!")
             
         elif input("Enter 'yes' or 'no'").strip() == 'no':
             print("Groundhog day!")
-            start_game()
+            game_state.update({"keys_collected": []})
+            play_room(game_room)
     
         else:
             play_room(current_room) 
