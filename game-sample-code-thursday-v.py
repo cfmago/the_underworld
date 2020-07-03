@@ -195,7 +195,20 @@ def play_room(room):
     if(game_state["current_room"] == underworld):
         print("In this room you find the devil. He asks you 'Do you want to make a pact?'")
     
-    #    if(next_room and input("Enter 'yes' or 'no'").strip() == 'yes'):
+        answer = input("Enter 'yes' or 'no'").strip()
+        
+        if answer == 'yes':
+            print("You find a unicorn. Hop on it and fly away. See you in another life!")
+            
+        elif answer == 'no':
+            print("Groundhog day!")
+            game_state.update({"keys_collected": []})
+            play_room(game_room)
+    
+        else:
+            play_room(current_room)        
+        
+        """
         if input("Enter 'yes' or 'no'").strip() == 'yes':
             print("You find a unicorn. Hop on it and fly away. See you in another life!")
             
@@ -206,7 +219,7 @@ def play_room(room):
     
         else:
             play_room(current_room) 
-        
+        """
     else:
         items = [i["name"] for i in object_relations[room["name"]]]
         print("This is " + room["name"] + ". In this room there's a " + ", ".join(items))
